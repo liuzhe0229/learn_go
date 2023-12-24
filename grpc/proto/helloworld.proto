@@ -1,4 +1,7 @@
 syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
 //  protoc -I . helloworld.proto --go_out=plugins=grpc:. 用这个命令编译
 option go_package = "./;proto";
 
@@ -14,4 +17,29 @@ message HelloRequest {
 
 message HelloReply {
   string message=1;
+}
+
+//下面的类型用来练习proto
+message TestProto {
+  string Message = 1;
+  // 嵌套的message
+  message Result {
+    string name = 1;
+    int32 age = 2;
+  }
+  repeated Result Data = 2;
+
+  Gender g = 3;
+
+  // map类型
+  map<string, string> m=4;
+
+  // timestamp 类型
+  google.protobuf.Timestamp addTime = 5;
+ }
+
+// 枚举
+enum Gender {
+  MALE = 0;
+  FEMALE = 1;
 }
